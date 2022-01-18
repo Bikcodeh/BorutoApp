@@ -1,5 +1,6 @@
 package com.bikcodeh.borutoapp.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -11,12 +12,13 @@ import com.bikcodeh.borutoapp.presentation.screens.welcome.WelcomeScreen
 import com.bikcodeh.borutoapp.util.Constants.DETAILS_ARGUMENT_KEY
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalAnimationApi
 @ExperimentalPagerApi
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Screen.Welcome.route
     ) {
         composable(route = Screen.Splash.route) {
             SplashScreen(navController = navController)

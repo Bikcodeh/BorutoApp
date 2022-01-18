@@ -2,4 +2,5 @@
 <resources>
     <string name="app_logo">App Logo</string>
     <string name="on_boarding_page">on boarding page</string>
+    <string name="finish_btn">Finish</string>
 </resources>
