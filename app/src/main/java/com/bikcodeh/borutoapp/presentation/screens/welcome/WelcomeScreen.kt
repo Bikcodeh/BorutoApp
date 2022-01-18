@@ -22,6 +22,7 @@ import androidx.navigation.NavHostController
 import com.bikcodeh.borutoapp.R
 import com.bikcodeh.borutoapp.domain.model.OnBoardingPage
 import com.bikcodeh.borutoapp.ui.theme.*
+import com.bikcodeh.borutoapp.util.Constants.LAST_ON_BOARDING_PAGE
 import com.bikcodeh.borutoapp.util.Constants.ON_BOARDING_PAGE_COUNT
 import com.google.accompanist.pager.*
 
@@ -66,7 +67,7 @@ fun WelcomeScreen(navHostController: NavHostController) {
             modifier = Modifier.weight(1f),
             pagerState = pagerState,
             onClick = {
-
+                navHostController.navigate("home_screen")
             }
         )
     }
@@ -119,13 +120,13 @@ fun FinishButton(
     onClick: () -> Unit
 ) {
     Row(
-        modifier = Modifier.padding(horizontal = EXTRA_LARGE_PADDING),
+        modifier = modifier.padding(horizontal = EXTRA_LARGE_PADDING),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.Center
     ) {
         AnimatedVisibility(
             modifier = Modifier.fillMaxWidth(),
-            visible = pagerState.currentPage == 2
+            visible = pagerState.currentPage == LAST_ON_BOARDING_PAGE
         ) {
             Button(onClick = onClick,
             colors = ButtonDefaults.buttonColors(
