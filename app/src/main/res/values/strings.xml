@@ -9,4 +9,5 @@
     <string name="network_error">Error icon</string>
     <string name="close_icon">Close Icon</string>
     <string name="search_placeholder">Search here...</string>
+    <string name="find_favorite_hero">Find your favorite hero!</string>
 </resources>
