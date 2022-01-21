@@ -4,6 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.BottomSheetValue.Collapsed
+import androidx.compose.material.BottomSheetValue.Expanded
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
@@ -25,6 +27,7 @@ import com.bikcodeh.borutoapp.presentation.components.OrderedList
 import com.bikcodeh.borutoapp.ui.theme.*
 import com.bikcodeh.borutoapp.util.Constants.ABOUT_TEXT_MAX_LINES
 import com.bikcodeh.borutoapp.util.Constants.BASE_URL
+import com.bikcodeh.borutoapp.util.Constants.MINIMUM_BACKGROUND_IMAGE
 
 @ExperimentalMaterialApi
 @Composable
@@ -36,6 +39,8 @@ fun DetailsContent(
         bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
     )
 
+    val currentSheetFraction = scaffoldState.currentSheetFraction
+
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
         sheetPeekHeight = MIN_SHEET_HEIGHT,
@@ -44,9 +49,13 @@ fun DetailsContent(
         },
         content = {
             selectedHero?.let { hero ->
-                BackgroundContent(heroImage = hero.image, onCloseClicked = {
-                    navHostController.popBackStack()
-                })
+                BackgroundContent(
+                    heroImage = hero.image,
+                    onCloseClicked = {
+                        navHostController.popBackStack()
+                    },
+                    imageFraction = currentSheetFraction
+                )
             }
         }
     )
@@ -182,7 +191,7 @@ fun BackgroundContent(
         Image(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(imageFraction)
+                .fillMaxHeight(imageFraction + MINIMUM_BACKGROUND_IMAGE)
                 .align(Alignment.TopStart),
             painter = painter,
             contentDescription = stringResource(id = R.string.hero_image),
@@ -205,6 +214,22 @@ fun BackgroundContent(
         }
     }
 }
+
+@ExperimentalMaterialApi
+val BottomSheetScaffoldState.currentSheetFraction: Float
+    get() {
+        val fraction = bottomSheetState.progress.fraction
+        val targetValue = bottomSheetState.targetValue
+        val currentValue = bottomSheetState.currentValue
+
+        return when {
+            currentValue == Collapsed && targetValue == Collapsed -> 1f
+            currentValue == Expanded && targetValue == Expanded -> 0f
+            currentValue == Collapsed && targetValue == Expanded -> 1f - fraction
+            currentValue == Expanded && targetValue == Collapsed -> 0f + fraction
+            else -> fraction
+        }
+    }
 
 @Preview
 @Composable
