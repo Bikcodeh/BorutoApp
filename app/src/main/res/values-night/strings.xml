@@ -10,4 +10,7 @@
     <string name="close_icon">Close Icon</string>
     <string name="search_placeholder">Search here...</string>
     <string name="find_favorite_hero">Find your favorite hero!</string>
+    <string name="server_unavailable_error">Server Unavailable</string>
+    <string name="internet_unavailable_error">Internet Unavailable</string>
+    <string name="unknown_error">Unknown Error</string>
 </resources>
