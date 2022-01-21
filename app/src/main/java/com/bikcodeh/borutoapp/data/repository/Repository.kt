@@ -3,11 +3,13 @@ package com.bikcodeh.borutoapp.data.repository
 import androidx.paging.PagingData
 import com.bikcodeh.borutoapp.domain.model.Hero
 import com.bikcodeh.borutoapp.domain.repository.DataStoreOperations
+import com.bikcodeh.borutoapp.domain.repository.LocalDataSource
 import com.bikcodeh.borutoapp.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class Repository @Inject constructor(
+    private val localDataSource: LocalDataSource,
     private val dataStoreOperations: DataStoreOperations,
     private val remote: RemoteDataSource
 ) {
@@ -26,5 +28,9 @@ class Repository @Inject constructor(
 
     fun readOnBoardingState(): Flow<Boolean> {
         return dataStoreOperations.readOnBoardingState()
+    }
+
+    suspend fun getSelectedHero(heroId: Int): Hero {
+        return localDataSource.getSelectedHero(heroId = heroId)
     }
 }

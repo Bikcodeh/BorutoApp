@@ -6,6 +6,7 @@ import com.bikcodeh.borutoapp.data.repository.Repository
 import com.bikcodeh.borutoapp.domain.repository.DataStoreOperations
 import com.bikcodeh.borutoapp.domain.use_cases.UseCases
 import com.bikcodeh.borutoapp.domain.use_cases.get_all_heroes.GetAllHeroesUseCase
+import com.bikcodeh.borutoapp.domain.use_cases.get_selected_hero.GetSelectedHeroUseCase
 import com.bikcodeh.borutoapp.domain.use_cases.read_onboarding.ReadOnBoardingUseCase
 import com.bikcodeh.borutoapp.domain.use_cases.save_onboarding.SaveOnBoardingUseCase
 import com.bikcodeh.borutoapp.domain.use_cases.search_heroes.SearchHeroesUseCase
@@ -33,7 +34,8 @@ object RepositoryModule {
             saveOnBoardingUseCase = SaveOnBoardingUseCase(repository = repository),
             readOnBoardingUseCase = ReadOnBoardingUseCase(repository = repository),
             getAllHeroesUseCase = GetAllHeroesUseCase(repository = repository),
-            searchHeroesUseCase = SearchHeroesUseCase(repository = repository)
+            searchHeroesUseCase = SearchHeroesUseCase(repository = repository),
+            getSelectedHeroUseCase = GetSelectedHeroUseCase(repository = repository)
         )
     }
 }
