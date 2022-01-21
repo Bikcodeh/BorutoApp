@@ -23,11 +23,13 @@ import androidx.paging.LoadState
 import com.bikcodeh.borutoapp.R
 import com.bikcodeh.borutoapp.ui.theme.MEDIUM_PADDING
 import com.bikcodeh.borutoapp.ui.theme.NETWORK_ERROR_ICON_HEIGHT
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 @Composable
 fun EmptyScreen(error: LoadState.Error) {
     val message by remember {
-        mutableStateOf(parseErrorMessage(message = error.toString()))
+        mutableStateOf(parseErrorMessage(error = error))
     }
 
     val icon by remember {
@@ -80,12 +82,12 @@ fun EmptyContent(
     }
 }
 
-fun parseErrorMessage(message: String): String {
+fun parseErrorMessage(error: LoadState.Error): String {
     return when {
-        message.contains("SocketTimeOutException") -> {
+        error.error is SocketTimeoutException -> {
             "Server Unavailable"
         }
-        message.contains("ConnectException") -> {
+        error.error is ConnectException -> {
             "Internet Unavailable"
         }
         else -> {
