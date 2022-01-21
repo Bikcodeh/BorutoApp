@@ -11,4 +11,5 @@ object Constants  {
     const val PREFERENCES_KEY = "on_boarding_completed"
     const val  BASE_URL = "HTTP://10.0.2.2:8080"
     const val ITEMS_PER_PAGE = 3
+    const val ABOUT_TEXT_MAX_LINES = 7
 }
