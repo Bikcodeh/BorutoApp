@@ -1,7 +1,6 @@
 package com.bikcodeh.borutoapp.presentation.screens.details
 
 import android.graphics.Color.parseColor
-import android.util.Log
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,6 +31,7 @@ import com.bikcodeh.borutoapp.ui.theme.*
 import com.bikcodeh.borutoapp.util.Constants.ABOUT_TEXT_MAX_LINES
 import com.bikcodeh.borutoapp.util.Constants.BASE_URL
 import com.bikcodeh.borutoapp.util.Constants.MINIMUM_BACKGROUND_IMAGE
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @ExperimentalMaterialApi
 @Composable
@@ -50,6 +50,11 @@ fun DetailsContent(
         darkVibrant = colors["darkVibrant"]!!
         onDarkVibrant = colors["onDarkVibrant"]!!
     }
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = Color(parseColor(darkVibrant))
+    )
 
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
