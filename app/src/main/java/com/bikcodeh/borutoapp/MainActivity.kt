@@ -14,9 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    
+
     private lateinit var navController: NavHostController
-    
+
     @ExperimentalMaterialApi
     @ExperimentalAnimationApi
     @ExperimentalPagerApi
