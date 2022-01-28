@@ -2,6 +2,7 @@ package com.bikcodeh.borutoapp.data.remote
 
 import com.bikcodeh.borutoapp.domain.model.ApiResponse
 import com.bikcodeh.borutoapp.domain.model.Hero
+import okio.IOException
 
 const val NEXT_PAGE_KEY = "nextPage"
 const val PREV_PAGE_KEY = "prevPage"
@@ -400,6 +401,9 @@ class FakeBorutoApi2 : BorutoApi {
 
 
     override suspend fun getAllHeroes(page: Int): ApiResponse {
+        if(exception) {
+            throw IOException()
+        }
         require(page in 1..5)
         return ApiResponse(
             success = true,
@@ -418,6 +422,11 @@ class FakeBorutoApi2 : BorutoApi {
     }
 
     private fun calculatePage(page: Int): Map<String, Int?> {
+
+        if(page1.isEmpty()) {
+            return mapOf(PREV_PAGE_KEY to null, NEXT_PAGE_KEY to null)
+        }
+
         var prevPage: Int? = page
         var nextPage: Int? = page
 
@@ -455,4 +464,15 @@ class FakeBorutoApi2 : BorutoApi {
             emptyList()
         }
     }
+
+    fun clearData() {
+        page1 = emptyList()
+    }
+
+    private var exception = false
+
+    fun addException() {
+        exception = true
+    }
+
 }
