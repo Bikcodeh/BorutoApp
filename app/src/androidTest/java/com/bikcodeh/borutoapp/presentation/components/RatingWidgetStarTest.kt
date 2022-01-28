@@ -83,4 +83,18 @@ class RatingWidgetStarTest {
         composeTestRule.onAllNodesWithContentDescription("FilledStar")
             .assertCountEquals(0)
     }
+
+    @Test
+    fun passInvalidValue_Expect_FiveEmptyStars() {
+        composeTestRule.setContent {
+            RatingWidget(modifier = Modifier.padding(all = SMALL_PADDING), rating = 5.4)
+        }
+
+        composeTestRule.onAllNodesWithContentDescription("EmptyStar")
+            .assertCountEquals(5)
+        composeTestRule.onAllNodesWithContentDescription("HalfFilledStar")
+            .assertCountEquals(0)
+        composeTestRule.onAllNodesWithContentDescription("FilledStar")
+            .assertCountEquals(0)
+    }
 }
