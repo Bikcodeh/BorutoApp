@@ -21,7 +21,7 @@
 #### Screenshots
 
 ## Home
-![Home!] (assets/home.png "Home")
+![Home] (assets/home.png "Home")
 
 ## Detail
 ![Detail!] (assets/detail.png "Detail")
