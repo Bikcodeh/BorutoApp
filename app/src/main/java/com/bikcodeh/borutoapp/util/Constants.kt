@@ -9,7 +9,8 @@ object Constants {
     const val LAST_ON_BOARDING_PAGE = 2
     const val PREFERENCES_NAME = "boruto_preferences"
     const val PREFERENCES_KEY = "on_boarding_completed"
-    const val BASE_URL = "http://10.0.2.2:8080"
+    //const val BASE_URL = "http://10.0.2.2:8080"
+    const val BASE_URL = "https://boruto-server-ktor.herokuapp.com/"
     const val ITEMS_PER_PAGE = 3
     const val ABOUT_TEXT_MAX_LINES = 7
     const val MINIMUM_BACKGROUND_IMAGE = 0.4f
